@@ -67,9 +67,9 @@ require_once('index.php');
   Canvas not supported...
 </canvas>
 
-  <div type="hidden" id="zaif_prices" style="display:none;" value="<?=htmlspecialchars($zaif_prices, ENT_QUOTES, 'UTF-8')?>"></div>
-  <div type="hidden" id="coincheck_prices" style="display:none;" value="<?=htmlspecialchars($coincheck_prices, ENT_QUOTES, 'UTF-8')?>"></div>
-  <div type="hidden" id="bitflyer_prices" style="display:none;" value="<?=htmlspecialchars($bitflyer_prices, ENT_QUOTES, 'UTF-8')?>"></div>
+  <div type="hidden" id="zaif" style="display:none;" value="<?=htmlspecialchars($zaif_prices, ENT_QUOTES, 'UTF-8')?>"></div>
+  <div type="hidden" id="coincheck" style="display:none;" value="<?=htmlspecialchars($coincheck_prices, ENT_QUOTES, 'UTF-8')?>"></div>
+  <div type="hidden" id="bitflyer" style="display:none;" value="<?=htmlspecialchars($bitflyer_prices, ENT_QUOTES, 'UTF-8')?>"></div>
 
   <div type="hidden" id="datetime" style="display:none;" value="<?=htmlspecialchars($datetime, ENT_QUOTES, 'UTF-8')?>"></div>
   

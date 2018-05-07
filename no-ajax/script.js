@@ -2,24 +2,26 @@
     'use strict';
 
     var doc = document;
-    var zaif_prices, bitflyer_prices, coincheck_prices, datetime;
+    var zaif, bitflyer, coincheck, datetime;
 
-    var list = [ zaif_prices, bitflyer_prices, coincheck_prices, datetime ];
-    var id   = [ 'zaif_prices', 'bitflyer_prices', 'coincheck_prices', 'datetime' ];
+    var list = [ zaif, bitflyer, coincheck, datetime ];
+    var id   = [ 'zaif', 'bitflyer', 'coincheck', 'datetime' ];
 
     // HTMLから取得したstringをjsonに変換
     for(var i = 0; i < list.length; i++){
        list[i] = JSON.parse(doc.getElementById(id[i]).getAttribute('value'));
     }
 
-    var day, week, month;
+    var day     = -24,
+        week    = day * 7,
+        month   = day * 30;
 
-    day     = -24;
-    week    = day * 7;
-    month   = day * 30;
-
-    // 表示させるcanvasのid
-    var canvas_id = {day:"display1", week:"display2", month:"display3"};
+    // チャートを表示させるcanvasのid
+    var canvas_id = {
+          day   : "display1",
+          week  : "display2",
+          month : "display3",
+        };
 
     // チャートの実装
     //day
@@ -55,20 +57,19 @@
 
       var list_month = [];
 
-      // 配列listのデータを39日分に整形する
+      // 配列listのデータを30日分に整形する
       for(var i = 0; i < list.length; i++){
          list_month[i] = list[i].slice(month);
       }
 
       display_chart(list_month[0], list_month[1], list_month[2], list_month[3], canvas_id.month)
 
-
     });
 
 
 
 // chartを作成
-  function display_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id){
+  function display_chart(zaif, bitflyer, coincheck, datetime, canvas_id){
 
     var type, data, options;
     var ctx, myChart;
@@ -81,9 +82,9 @@
         datasets: [
         {
           // 取引所１
-          label: 'zaif',
+          label: 'Zaif',
           // 金額
-          data: zaif_prices,
+          data: zaif,
           // 色
           backgroundColor: 'rgba(0, 0, 255, 0.3)',
         }
@@ -91,7 +92,7 @@
           // 取引所２
           label: 'bitflyer',
           // 金額
-          data: bitflyer_prices,
+          data: bitflyer,
           // 色
           backgroundColor: 'rgba(0, 255, 255, 0.3)',
         }
@@ -99,7 +100,7 @@
           // 取引所３
           label: 'coincheck',
           // 金額
-          data: coincheck_prices,
+          data: coincheck,
           // 色
           backgroundColor: 'rgba(255, 0, 255, 0.3)',
         }
