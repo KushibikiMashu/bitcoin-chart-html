@@ -21,8 +21,7 @@ $stmt = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 $zaif_prices 		= [];
 $bitflyer_prices 	= [];
 $coincheck_prices 	= [];
-
-$datetime 	= [];
+$datetime 			= [];
 
 
 // 1時間ごとの取得
@@ -55,8 +54,7 @@ foreach ($stmt as $key => $value) {
 $zaif_prices 		= json_encode($zaif_prices);
 $bitflyer_prices 	= json_encode($bitflyer_prices);
 $coincheck_prices 	= json_encode($coincheck_prices);
-
-$datetime 	=json_encode($datetime);
+$datetime 			=json_encode($datetime);
 
 }
 catch (Exception $e)

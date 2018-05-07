@@ -1,17 +1,16 @@
-$(function(){
-
   (function() {
     'use strict';
 
     var doc = document;
-    var zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id;
+    var zaif_prices, bitflyer_prices, coincheck_prices, datetime;
 
-    zaif_prices         = JSON.parse(doc.getElementById('zaif_prices').getAttribute('value'));
-    bitflyer_prices     = JSON.parse(doc.getElementById('bitflyer_prices').getAttribute('value'));
-    coincheck_prices    = JSON.parse(doc.getElementById('coincheck_prices').getAttribute('value'));
-    datetime            = JSON.parse(doc.getElementById('datetime').getAttribute('value'));
+    var list = [ zaif_prices, bitflyer_prices, coincheck_prices, datetime ];
+    var id   = [ 'zaif_prices', 'bitflyer_prices', 'coincheck_prices', 'datetime' ];
 
-    canvas_id = {day:"display1", week:"display2", month:"display3"};
+    // HTMLから取得したstringをjsonに変換
+    for(var i = 0; i < list.length; i++){
+       list[i] = JSON.parse(doc.getElementById(id[i]).getAttribute('value'));
+    }
 
     var day, week, month;
 
@@ -19,51 +18,57 @@ $(function(){
     week    = day * 7;
     month   = day * 30;
 
+    // 表示させるcanvasのid
+    var canvas_id = {day:"display1", week:"display2", month:"display3"};
 
-    // month
+    // チャートの実装
+    //day
     window.addEventListener('load', function(){
 
-      zaif_prices         = zaif_prices.slice(month);
-      bitflyer_prices     = bitflyer_prices.slice(month);
-      coincheck_prices    = coincheck_prices.slice(month);
-      datetime            = datetime.slice(month);
+      var list_day = [];
 
-      make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id.month)
+      // 配列listのデータを1日分に整形する
+      for(var i = 0; i < list.length; i++){
+         list_day[i] = list[i].slice(day);
+      }
+
+      display_chart(list_day[0], list_day[1], list_day[2], list_day[3], canvas_id.day)
 
     });
 
     // week
     window.addEventListener('load', function(){
 
-      zaif_prices         = zaif_prices.slice(week);
-      bitflyer_prices     = bitflyer_prices.slice(week);
-      coincheck_prices    = coincheck_prices.slice(week);
-      datetime            = datetime.slice(week);
+      var list_week = [];
 
-      make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id.week)
+      // 配列listのデータを7日分に整形する
+      for(var i = 0; i < list.length; i++){
+         list_week[i] = list[i].slice(week);
+      }
+
+      display_chart(list_week[0], list_week[1], list_week[2], list_week[3], canvas_id.week)
 
     });
 
-    //day
-    // $('#day').on( 'click', function(){
+    // month
     window.addEventListener('load', function(){
 
-      zaif_prices         = zaif_prices.slice(day);
-      bitflyer_prices     = bitflyer_prices.slice(day);
-      coincheck_prices    = coincheck_prices.slice(day);
-      datetime            = datetime.slice(day);
+      var list_month = [];
 
-      make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id.day)
+      // 配列listのデータを39日分に整形する
+      for(var i = 0; i < list.length; i++){
+         list_month[i] = list[i].slice(month);
+      }
+
+      display_chart(list_month[0], list_month[1], list_month[2], list_month[3], canvas_id.month)
+
 
     });
-
-
-
 
 
 
 // chartを作成
-  function make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id){
+  function display_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id){
 
     var type, data, options;
     var ctx, myChart;
@@ -111,5 +116,3 @@ $(function(){
   }
 
   })();
-
-});
