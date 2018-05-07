@@ -61,49 +61,41 @@ $(function(){
 // chartを作成
   function make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id){
 
-    var type, data, options;
-    var ctx, myChart;
+    var options, myChart;
+    config = {
+          type : 'line',
+          data : {
+              // 時間
+              labels: datetime,
+              datasets: [
+              {
+                // 取引所１
+                label: 'zaif',
+                // 金額
+                data: zaif_prices,
+                // 色
+                backgroundColor: 'rgba(0, 0, 255, 0.3)',
+              }, {
+                // 取引所２
+                label: 'bitflyer',
+                // 金額
+                data: bitflyer_prices,
+                // 色
+                backgroundColor: 'rgba(0, 255, 255, 0.3)',
+              }, {
+                // 取引所３
+                label: 'coincheck',
+                // 金額
+                data: coincheck_prices,
+                // 色
+                backgroundColor: 'rgba(255, 0, 255, 0.3)',
+              }],
+              options: options
+              }
+          }
 
-    type = 'line';
-
-    data = {
-        // 時間
-        labels: datetime,
-        datasets: [
-        {
-          // 取引所１
-          label: 'zaif',
-          // 金額
-          data: zaif_prices,
-          // 色
-          backgroundColor: 'rgba(0, 0, 255, 0.3)',
-        }
-         , {
-          // 取引所２
-          label: 'bitflyer',
-          // 金額
-          data: bitflyer_prices,
-          // 色
-          backgroundColor: 'rgba(0, 255, 255, 0.3)',
-        }
-         , {
-          // 取引所３
-          label: 'coincheck',
-          // 金額
-          data: coincheck_prices,
-          // 色
-          backgroundColor: 'rgba(255, 0, 255, 0.3)',
-        }
-        ]
-    };
-
-    ctx = document.getElementById(canvas_id).getContext('2d');
-
-    myChart = new Chart(ctx, {
-      type: type,
-      data: data,
-      options: options
-    });
+    var ctx = document.getElementById(canvas_id).getContext('2d');
+    myChart = new Chart(ctx, config);
   }
 
   })();
