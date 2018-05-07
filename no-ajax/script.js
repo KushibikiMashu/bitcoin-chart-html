@@ -71,7 +71,7 @@
 // chartを作成
   function display_chart(zaif, bitflyer, coincheck, datetime, canvas_id){
 
-    var type, data, options;
+    var type, data, options, option;
     var ctx, myChart;
 
     type = 'line';
@@ -87,6 +87,8 @@
           data: zaif,
           // 色
           backgroundColor: 'rgba(0, 0, 255, 0.3)',
+          // 点のサイズ
+          pointRadius: 0.5,
         }
          , {
           // 取引所２
@@ -95,6 +97,8 @@
           data: bitflyer,
           // 色
           backgroundColor: 'rgba(0, 255, 255, 0.3)',
+          // 点のサイズ
+          pointRadius: 0.5,
         }
          , {
           // 取引所３
@@ -103,8 +107,24 @@
           data: coincheck,
           // 色
           backgroundColor: 'rgba(255, 0, 255, 0.3)',
+          // 点のサイズ
+          pointRadius: 0.5,
         }
         ]
+    };
+
+    option = {
+        scales : {
+          fontSize : 16
+        },
+        layout: {
+            padding: {
+                left: 30,
+                right: 30,
+                top: 0,
+                bottom: 0
+            }
+        }
     };
 
     ctx = document.getElementById(canvas_id).getContext('2d');
@@ -112,8 +132,10 @@
     myChart = new Chart(ctx, {
       type: type,
       data: data,
-      options: options
+      options: option
     });
+
   }
+
 
   })();
