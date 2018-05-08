@@ -1,103 +1,136 @@
-$(function(){
+'use strict';
 
-  (function() {
-    'use strict';
+var doc = document;
+var zaif, bitflyer, coincheck, datetime;
 
-    var doc = document;
-    var zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id;
-    var day, week, month;
+var list = [ zaif, bitflyer, coincheck, datetime ];
+var id   = [ 'zaif', 'bitflyer', 'coincheck', 'datetime' ];
 
-    zaif_prices         = JSON.parse(doc.getElementById('zaif_prices').getAttribute('value'));
-    bitflyer_prices     = JSON.parse(doc.getElementById('bitflyer_prices').getAttribute('value'));
-    coincheck_prices    = JSON.parse(doc.getElementById('coincheck_prices').getAttribute('value'));
-    datetime            = JSON.parse(doc.getElementById('datetime').getAttribute('value'));
+// HTMLから取得したstringをjsonに変換
+for(var i = 0; i < list.length; i++){
+   list[i] = JSON.parse(doc.getElementById(id[i]).getAttribute('value'));
+}
 
-    day = -24;
-    week = day * 7;
-    month = day * 30;
+var day     = -24,
+    week    = day * 7,
+    month   = day * 30;
 
-    canvas_id = {day:'my_chart_1', week:'my_chart_2', month:'my_chart_3'};
+// チャートを表示させるcanvasのid
+var canvas_id = {
+      day   : "display1",
+      week  : "display2",
+      month : "display3",
+    };
 
-    //day
-    $('#day').on( 'click', function(){
+// チャートの実装
+//day
+window.addEventListener('load', function(){
 
-      zaif_prices         = zaif_prices.slice(day);
-      bitflyer_prices     = bitflyer_prices.slice(day);
-      coincheck_prices    = coincheck_prices.slice(day);
-      datetime            = datetime.slice(day);
+  var list_day = [];
 
-      console.log(canvas_id['day']);
+  // 配列listのデータを1日分に整形する
+  for(var i = 0; i < list.length; i++){
+     list_day[i] = list[i].slice(day);
+  }
 
-      make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id['day'])
-    });
+  display_chart(list_day[0], list_day[1], list_day[2], list_day[3], canvas_id.day)
 
-    // week
-    $('#week').on( 'click', function(){
+});
 
-      zaif_prices         = zaif_prices.slice(week);
-      bitflyer_prices     = bitflyer_prices.slice(week);
-      coincheck_prices    = coincheck_prices.slice(week);
-      datetime            = datetime.slice(week);
+// week
+window.addEventListener('load', function(){
 
-      console.log(canvas_id['week']);
+  var list_week = [];
 
-      make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id['week'])
-    });
+  // 配列listのデータを7日分に整形する
+  for(var i = 0; i < list.length; i++){
+     list_week[i] = list[i].slice(week);
+  }
 
-    // month
-    $('#month').on( 'click', function(){
+  display_chart(list_week[0], list_week[1], list_week[2], list_week[3], canvas_id.week)
 
-      zaif_prices         = zaif_prices.slice(month);
-      bitflyer_prices     = bitflyer_prices.slice(month);
-      coincheck_prices    = coincheck_prices.slice(month);
-      datetime            = datetime.slice(month);
+});
 
-      console.log(canvas_id['month']);
+// month
+window.addEventListener('load', function(){
 
-      make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id['month'])
-    });
+  var list_month = [];
+
+  // 配列listのデータを30日分に整形する
+  for(var i = 0; i < list.length; i++){
+     list_month[i] = list[i].slice(month);
+  }
+
+  display_chart(list_month[0], list_month[1], list_month[2], list_month[3], canvas_id.month)
+
+});
 
 
 // chartを作成
-  function make_chart(zaif_prices, bitflyer_prices, coincheck_prices, datetime, canvas_id){
+function display_chart(zaif, bitflyer, coincheck, datetime, canvas_id){
 
-    var options, myChart;
-    config = {
-          type : 'line',
-          data : {
-              // 時間
-              labels: datetime,
-              datasets: [
-              {
-                // 取引所１
-                label: 'zaif',
-                // 金額
-                data: zaif_prices,
-                // 色
-                backgroundColor: 'rgba(0, 0, 255, 0.3)',
-              }, {
-                // 取引所２
-                label: 'bitflyer',
-                // 金額
-                data: bitflyer_prices,
-                // 色
-                backgroundColor: 'rgba(0, 255, 255, 0.3)',
-              }, {
-                // 取引所３
-                label: 'coincheck',
-                // 金額
-                data: coincheck_prices,
-                // 色
-                backgroundColor: 'rgba(255, 0, 255, 0.3)',
-              }],
-              options: options
-              }
+  var type, data, options, option;
+  var ctx, myChart;
+
+  type = 'line';
+
+  data = {
+      // 時間
+      labels: datetime,
+      datasets: [
+      {
+        // 取引所１
+        label: 'Zaif',
+        // 金額
+        data: zaif,
+        // 色
+        backgroundColor: 'rgba(0, 0, 255, 0.3)',
+        // 点のサイズ
+        pointRadius: 0.5,
+      }
+       , {
+        // 取引所２
+        label: 'bitflyer',
+        // 金額
+        data: bitflyer,
+        // 色
+        backgroundColor: 'rgba(0, 255, 255, 0.3)',
+        // 点のサイズ
+        pointRadius: 0.5,
+      }
+       , {
+        // 取引所３
+        label: 'coincheck',
+        // 金額
+        data: coincheck,
+        // 色
+        backgroundColor: 'rgba(255, 0, 255, 0.3)',
+        // 点のサイズ
+        pointRadius: 0.5,
+      }
+      ]
+  };
+
+  option = {
+      scales : {
+        fontSize : 16
+      },
+      layout: {
+          padding: {
+              left: 30,
+              right: 30,
+              top: 0,
+              bottom: 0
           }
+      }
+  };
 
-    var ctx = document.getElementById(canvas_id).getContext('2d');
-    myChart = new Chart(ctx, config);
-  }
+  ctx = document.getElementById(canvas_id).getContext('2d');
 
-  })();
+  myChart = new Chart(ctx, {
+    type: type,
+    data: data,
+    options: option
+  });
 
-});
+}

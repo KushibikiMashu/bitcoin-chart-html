@@ -15,52 +15,29 @@ require_once('index.php');
 
   <title>My Chart</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    canvas {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+  </style>
 
 <body>
 
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
+<canvas id="display1">
+  Canvas not supported...
+</canvas>
+<canvas id="display2">
+  Canvas not supported...
+</canvas>
+<canvas id="display3">
+  Canvas not supported...
+</canvas>
 
-          <ul class="nav nav-pills">
-            <li class="nav-item" id="day">
-              <a href="" class="active nav-link" data-toggle="pill" data-target="#tabone">day</a>
-            </li>
-            <li class="nav-item" id="week">
-              <a class="nav-link" href="#tabtwo" data-toggle="pill" data-target="#tabtwo">weeekly</a>
-            </li>
-            <li class="nav-item"  id="month">
-              <a href="" class="nav-link" data-toggle="pill" data-target="#tabthree">monthly</a>
-            </li>
-          </ul>
-
-          <div class="tab-content mt-2">
-            <div class="tab-pane fade show active" id="tabone" role="tabpanel">
-              <canvas id="my_chart_1">
-                Canvas not supported...
-              </canvas>
-            </div>
-            <div class="tab-pane fade" id="tabtwo" role="tabpanel">
-              <canvas id="my_chart_2">
-                Canvas not supported...
-              </canvas>
-            </div>
-            <div class="tab-pane fade" id="tabthree" role="tabpanel">
-              <canvas id="my_chart_3">
-                Canvas not supported...
-              </canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div type="hidden" id="zaif_prices" style="display:none;" value="<?=htmlspecialchars($zaif_prices, ENT_QUOTES, 'UTF-8')?>"></div>
-  <div type="hidden" id="coincheck_prices" style="display:none;" value="<?=htmlspecialchars($coincheck_prices, ENT_QUOTES, 'UTF-8')?>"></div>
-  <div type="hidden" id="bitflyer_prices" style="display:none;" value="<?=htmlspecialchars($bitflyer_prices, ENT_QUOTES, 'UTF-8')?>"></div>
+  <div type="hidden" id="zaif" style="display:none;" value="<?=htmlspecialchars($zaif_prices, ENT_QUOTES, 'UTF-8')?>"></div>
+  <div type="hidden" id="coincheck" style="display:none;" value="<?=htmlspecialchars($coincheck_prices, ENT_QUOTES, 'UTF-8')?>"></div>
+  <div type="hidden" id="bitflyer" style="display:none;" value="<?=htmlspecialchars($bitflyer_prices, ENT_QUOTES, 'UTF-8')?>"></div>
 
   <div type="hidden" id="datetime" style="display:none;" value="<?=htmlspecialchars($datetime, ENT_QUOTES, 'UTF-8')?>"></div>
   
