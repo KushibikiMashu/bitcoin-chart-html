@@ -6,8 +6,10 @@ var zaif, bitflyer, coincheck, datetime;
 var list = [ zaif, bitflyer, coincheck, datetime ];
 var id   = [ 'zaif', 'bitflyer', 'coincheck', 'datetime' ];
 
+var len = list.length;
+
 // HTMLから取得したstringをjsonに変換
-for(var i = 0; i < list.length; i++){
+for(i = 0; i < len; i++){
    list[i] = JSON.parse(doc.getElementById(id[i]).getAttribute('value'));
 }
 
@@ -29,7 +31,7 @@ window.addEventListener('load', function(){
   var list_day = [];
 
   // 配列listのデータを1日分に整形する
-  for(var i = 0; i < list.length; i++){
+  for(i = 0; i < len; i++){
      list_day[i] = list[i].slice(day);
   }
 
@@ -43,7 +45,7 @@ window.addEventListener('load', function(){
   var list_week = [];
 
   // 配列listのデータを7日分に整形する
-  for(var i = 0; i < list.length; i++){
+  for(i = 0; i < len; i++){
      list_week[i] = list[i].slice(week);
   }
 
@@ -57,7 +59,7 @@ window.addEventListener('load', function(){
   var list_month = [];
 
   // 配列listのデータを30日分に整形する
-  for(var i = 0; i < list.length; i++){
+  for(i = 0; i < len; i++){
      list_month[i] = list[i].slice(month);
   }
 
