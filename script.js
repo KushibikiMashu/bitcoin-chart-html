@@ -7,6 +7,7 @@ var list = [ zaif, bitflyer, coincheck, datetime ];
 var id   = [ 'zaif', 'bitflyer', 'coincheck', 'datetime' ];
 
 var len = list.length;
+var i;
 
 // HTMLから取得したstringをjsonに変換
 for(i = 0; i < len; i++){
