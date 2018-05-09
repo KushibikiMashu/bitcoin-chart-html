@@ -2,6 +2,7 @@ var seriesOptions = [],
     seriesCounter = 0,
     names = ['Zaif', 'bitflyer', 'coincheck'];
 
+
 /**
  * Create the chart when all data is loaded
  * @returns {undefined}
@@ -60,9 +61,12 @@ Highcharts.setOptions({
   }
 });
 
+var loc = window.location;
+var dir = loc.origin + getDir(loc);
+
 $.each(names, function (i, name) {
 
-    $.getJSON('http://localhost:8888/git_personal_no_password/bitcoin_chart/highcharts/json/' + name.toLowerCase() + '.json',    function (data) {
+    $.getJSON(dir + 'highcharts/json/' + name.toLowerCase() + '.json',    function (data) {
 
         seriesOptions[i] = {
             name: name,
@@ -78,3 +82,8 @@ $.each(names, function (i, name) {
         }
     });
 });
+
+//  現在のディレクトリを取得
+function getDir(place, n) {
+　　return place.pathname.replace(new RegExp("(?:\\\/+[^\\\/]*){0," + ((n || 0) + 1) + "}$"), "/");
+}
