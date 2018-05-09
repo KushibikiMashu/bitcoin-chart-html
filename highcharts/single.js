@@ -1,6 +1,6 @@
 
 $.getJSON(
-  'http://localhost:8888/git_personal_no_password/bitcoin_chart/highcharts/json.json',
+  'http://localhost:8888/git_personal_no_password/bitcoin_chart/highcharts/json/json.json',
   function (data) {
 
     Highcharts.chart('container', {
