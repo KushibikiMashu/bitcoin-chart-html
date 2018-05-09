@@ -21,7 +21,24 @@ function createChart() {
 
         rangeSelector: {
             allButtonsEnabled: false,
-            selected: 4
+            selected: false,
+            buttons : [{
+                type : 'minute', // 分単位 (0)
+                count : 1440,     // 単位は分
+                text : '1d'       // 一日分
+            }, {
+                type : 'minute',    // 日単位 (1)
+                count : 1440 * 7,   // 1週間分
+                text : '7d'
+            }, {
+                type : 'minute',    // 日単位 (1)
+                count : 1440 * 7 * 2,   // 2週間分
+                text : '2w'
+            },  {
+                type : 'all',    // 全データ
+                count : 1,
+                text : 'All'
+            }]
         },
 
         yAxis: {

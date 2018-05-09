@@ -47,8 +47,8 @@ foreach ($stmt as $key => $value) {
 		
 		case '0': // coincheck
 			$coincheck_prices[]	= $price;
-			// $datetime[] = substr( $created_at , 0 , strlen($created_at) -3 );
-			$datetime[] = $created_at;
+			// $datetime[] = $created_at;
+			$datetime[] = substr($created_at, 0, -1) . '0';
 			
 			break;
 
@@ -57,6 +57,8 @@ foreach ($stmt as $key => $value) {
 			break;
 	}
 }
+
+	var_dump($datetime);
 
 $timestamp = [];
 $json_array = [];
@@ -78,6 +80,6 @@ $bitflyer_array		= json_encode($bitflyer_array);
 $coincheck_array 	= json_encode($coincheck_array);
 
 // jsonに出力する
-file_put_contents('zaif.json', $zaif_array);
-file_put_contents('bitflyer.json', $bitflyer_array);
-file_put_contents('coincheck.json', $coincheck_array);
+file_put_contents('json/zaif.json', $zaif_array);
+file_put_contents('json/bitflyer.json', $bitflyer_array);
+file_put_contents('json/coincheck.json', $coincheck_array);

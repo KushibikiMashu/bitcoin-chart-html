@@ -11,17 +11,58 @@
   <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
   <script src="highcharts/multi.js"></script>
+
 </head>
 
 <body>
-  <div class="py-5 text-center">
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary text-left">
+    <div class="container">
+      <a class="navbar-brand" href="">
+        <i class="fa d-inline fa-lg fa-bitcoin"></i>
+        <b style="font-size:27px; position: absolute; bottom: 11px">itcoin Chart</b>
+      </a>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+    </div>
+  </nav>
+  <div class="text-center py-3" style="padding-top:0px !important">
     <div class="container py-5">
-		<div id="container" style="height: 400px; min-width: 310px"></div>
+      <div id="container" style="height: 400px; min-width: 310px"></div>
+    </div>
+  </div>
+  <div class="py-5" style="padding-bottom: 10px !important ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center display-3 text-primary" style="font-size:24px">チャートの使い方</h1>
+          <ul style="list-style:none; text-align: center;">
+            <li style="padding-bottom:10px">このチャートではビットコインの価格が各取引所毎に異なることに着目しています</li>
+            <li style="padding-bottom:10px">ビットコインの金額は、Zaif、bitflyer、coincheckの三社のものを使用しています</li>
+            <li style="padding-bottom:10px">15分毎の購入価格を表示しています</li>
+            <li style="padding-bottom:10px">チャート下の凡例をクリックすると、その色の折れ線グラフが非表示になります</li>
+            <li style="padding-bottom:10px">作者はビットコインのtwitter bot
+              <a href="https://twitter.com/bitcoin_exchg">
+                <i class="fa d-inline fa-lg fab fa-twitter"></i>
+              </a>
+              を運営しています。
+              <br>
+              要望などはこちらにお願いします。
+            </li>
+            <li style="padding-bottom:10px">本サイトは<a href="http://xn--eck3a9bu7cul981xhp9b.com/">BITCOIN相場</a>様のデータを使用しています</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="bg-primary text-white py-2" id="footer">
+    <div class="container" style="font-size: 16px; text-align: center; padding: 10px 0">
+      Created by @Panda_Program
+        <a href="https://twitter.com/Panda_Program" target="_blank"><i class="fa fa-fw fa-twitter fa text-white" id="twitter-icon"></i></a>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-<!-- 	thanks  : https://pingendo.com/
+  <!-- 	thanks  : https://pingendo.com/
 		Lisence : MIT  -->
+</body>
+
 </html>
