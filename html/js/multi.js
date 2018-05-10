@@ -83,7 +83,7 @@ var dir = loc.origin + getDir(loc);
 
 $.each(names, function (i, name) {
 
-    $.getJSON(dir + 'highcharts/json/' + name.toLowerCase() + '.json',    function (data) {
+    $.getJSON(dir + 'js/json/' + name.toLowerCase() + '.json',    function (data) {
 
         seriesOptions[i] = {
             name: name,
