@@ -15,9 +15,9 @@ $pdo = new PDO($dsn, $user, $password, [
 catch (Exception $e)
 {
 	print 'データーベース接続エラー発生';
+	print '現在、復旧作業中です。しばらくお待ちください。';
 	exit();
 }
-
 
 // 最高値のデータ（カラム名をキーにした連想配列）	
 $sql = 'SELECT * FROM bitcoin_exchange';
@@ -57,8 +57,6 @@ foreach ($stmt as $key => $value) {
 			break;
 	}
 }
-
-	var_dump($datetime);
 
 $timestamp = [];
 $json_array = [];

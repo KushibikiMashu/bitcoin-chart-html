@@ -1,3 +1,6 @@
+// チャートのデータが古い、または読み込めない場合は、
+// ajaxのjson取得アドレスをサーバーに応じて変更する
+
 var seriesOptions = [],
     seriesCounter = 0,
     names = ['Zaif', 'bitflyer', 'coincheck'];
@@ -72,18 +75,18 @@ function createChart() {
 
 // カンマ区切り
 Highcharts.setOptions({
+    global: {
+        useUTC: false
+    },
   lang: {
     // 桁区切りの文字を指定
     thousandsSep: ','
   }
 });
 
-var loc = window.location;
-var dir = loc.origin + getDir(loc);
-
 $.each(names, function (i, name) {
 
-    $.getJSON(dir + 'js/json/' + name.toLowerCase() + '.json',    function (data) {
+    $.getJSON('http://bitcoin-chart.info/js/json/' + name.toLowerCase() + '.json',    function (data) {
 
         seriesOptions[i] = {
             name: name,
@@ -99,8 +102,3 @@ $.each(names, function (i, name) {
         }
     });
 });
-
-//  現在のディレクトリを取得
-function getDir(place, n) {
-　　return place.pathname.replace(new RegExp("(?:\\\/+[^\\\/]*){0," + ((n || 0) + 1) + "}$"), "/");
-}
