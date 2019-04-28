@@ -1,0 +1,11 @@
+{
+  "name": "bitcoin-chart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KushibikiMashu/bitcoin-chart.git",
+  "author": "KushibikiMashu",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {}
+}
